@@ -1,7 +1,7 @@
 {
-  "name": "@mgesteban/boardbreeze-mcp",
+  "name": "@mgesteban/mcp-server-setup",
   "version": "1.0.0",
-  "description": "A powerful MCP server that enhances AI-assisted development capabilities",
+  "description": "A helpful setup tool for quickly installing and configuring MCP servers",
   "type": "module",
   "main": "src/server.js",
   "repository": {

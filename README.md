@@ -1,6 +1,9 @@
-# MCP Setup - Multi Context Protocol
+# MCP Server Setup Tool
 
-I'm sharing my setup to help other developers use this powerful development tool that enhances the capabilities of AI-assisted development. The BoardBreeze MCP server provides a suite of specialized tools and resources that streamline the development process, particularly for projects requiring documentation generation, project setup, and OpenAI integration.
+This is a setup tool to help developers quickly install and configure MCP (Model Context Protocol) servers. MCP is a powerful protocol that enables AI-assisted development, and this tool aims to make it easier for developers to get started with MCP servers.
+
+## What is MCP?
+The Model Context Protocol (MCP) is a protocol for extending AI capabilities through local servers. This setup tool provides a quick way to bootstrap an MCP server with common tools and configurations. For more information about MCP itself, please visit the official documentation.
 
 ## Key Features
 
