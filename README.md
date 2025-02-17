@@ -1,7 +1,6 @@
-# BoardBreeze MCP Server
+# MCP Setup - Multi Context Protocol
 
-## Overview
-The BoardBreeze Model Context Protocol (MCP) server is a powerful development tool that enhances the capabilities of AI-assisted development. It provides a suite of specialized tools and resources that streamline the development process, particularly for projects requiring documentation generation, project setup, and OpenAI integration.
+I'm sharing my setup to help other developers use this powerful development tool that enhances the capabilities of AI-assisted development. The BoardBreeze MCP server provides a suite of specialized tools and resources that streamline the development process, particularly for projects requiring documentation generation, project setup, and OpenAI integration.
 
 ## Key Features
 
