@@ -1,7 +1,29 @@
 {
-  "name": "boardbreeze-mcp",
+  "name": "@mgesteban/boardbreeze-mcp",
   "version": "1.0.0",
+  "description": "A powerful MCP server that enhances AI-assisted development capabilities",
   "type": "module",
+  "main": "src/server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgesteban/mcp-setup-multi-context-protocol.git"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "development",
+    "tools",
+    "documentation"
+  ],
+  "author": "mgesteban",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mgesteban/mcp-setup-multi-context-protocol/issues"
+  },
+  "homepage": "https://github.com/mgesteban/mcp-setup-multi-context-protocol#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
