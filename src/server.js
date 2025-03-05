@@ -1,71 +1,62 @@
 #!/usr/bin/env node
-import express from 'express';
-import { WebSocketServer } from 'ws';
-import http from 'http';
-import cors from 'cors';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { docsTools } from './tools/docsTools.js';
 import dotenv from 'dotenv';
-import { registerTools } from './tools/index.js';
+import config from './config/settings.js';
+import { setupTools } from './tools/index.js';
 
 dotenv.config();
 
-const app = express();
-const server = http.createServer(app);
-const wss = new WebSocketServer({ server });
-
-app.use(cors());
-app.use(express.json());
-
-// Store connected clients
-const clients = new Set();
-
-// WebSocket connection handler
-wss.on('connection', (ws) => {
-  clients.add(ws);
-  console.log('Client connected');
-
-  ws.on('message', async (message) => {
-    try {
-      const { type, payload } = JSON.parse(message);
-      const tools = registerTools();
-      
-      if (type === 'TOOL_REQUEST') {
-        const { toolName, params } = payload;
-        const tool = tools.get(toolName);
-        
-        if (tool) {
-          const result = await tool(params);
-          ws.send(JSON.stringify({
-            type: 'TOOL_RESPONSE',
-            payload: result
-          }));
-        } else {
-          ws.send(JSON.stringify({
-            type: 'ERROR',
-            payload: `Tool ${toolName} not found`
-          }));
+const server = new Server(
+  {
+    name: config.server.name,
+    version: config.server.version
+  },
+  {
+      capabilities: {
+        resources: {},
+        tools: {
+          list_tools: {
+            inputSchema: {
+              type: "object",
+              properties: {},
+              required: []
+            }
+          },
+          get_docs: {
+            inputSchema: {
+              type: "object",
+              properties: {
+                type: {
+                  type: "string",
+                  description: "Type of documentation to retrieve (react, openai, aws, typescript, express, or vercel)",
+                  enum: ["react", "openai", "aws", "typescript", "express", "vercel"]
+                },
+                path: {
+                  type: "string",
+                  description: "Path to specific documentation section"
+                }
+              },
+              required: ["type"]
+            }
+          }
         }
       }
-    } catch (error) {
-      ws.send(JSON.stringify({
-        type: 'ERROR',
-        payload: error.message
-      }));
-    }
-  });
+  }
+);
 
-  ws.on('close', () => {
-    clients.delete(ws);
-    console.log('Client disconnected');
-  });
-});
+// Set up tools
+setupTools(server);
 
-// HTTP endpoints
-app.get('/health', (req, res) => {
-  res.json({ status: 'healthy', connectedClients: clients.size });
-});
+const transport = new StdioServerTransport();
 
-// Start server
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`MCP Server running on port ${PORT}`);
+server.connect(transport).then(() => {
+  console.log(`MCP Server running on port ${config.port}`);
+}).catch(console.error);
+
+// Handle cleanup
+process.on('SIGINT', async () => {
+  await server.close();
+  process.exit(0);
 });

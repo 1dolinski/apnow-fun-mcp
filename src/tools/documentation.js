@@ -5,6 +5,7 @@ const OPENAI_DOCS_BASE_URL = 'https://api.openai.com';
 const AWS_DOCS_BASE_URL = 'https://docs.aws.amazon.com';
 const TS_DOCS_BASE_URL = 'https://www.typescriptlang.org/docs';
 const EXPRESS_DOCS_BASE_URL = 'https://expressjs.com';
+const VERCEL_DOCS_BASE_URL = 'https://vercel.com/docs';
 
 async function fetchReactDocs(path = '') {
   try {
@@ -155,8 +156,57 @@ async function fetchAWSDocs(path = '') {
       'sdk-js': '/sdk-for-javascript',
       'cli': '/cli',
       'iam': '/iam',
-      'security': '/security'
+      'security': '/security',
+      
+      // AWS Amplify Documentation
+      'amplify': '/amplify',
+      'amplify-hosting': '/amplify/hosting',
+      'amplify-build-settings': '/amplify/build-settings',
+      'amplify-environment-variables': '/amplify/environment-variables',
+      'amplify-custom-domains': '/amplify/custom-domains',
+      'amplify-nextjs': '/amplify/nextjs',
+      'amplify-deploy': '/amplify/deploy',
+      'amplify-troubleshooting': '/amplify/troubleshooting',
+      'amplify-ssr': '/amplify/ssr',
+      'amplify-404-errors': '/amplify/troubleshooting/404-errors',
+      'amplify-build-errors': '/amplify/troubleshooting/build-errors',
+      'amplify-env-vars': '/amplify/environment-variables',
+      'amplify-rewrites': '/amplify/rewrites-redirects',
+      'amplify-monorepo': '/amplify/monorepo-deployment'
     };
+
+    // Special handling for Amplify documentation
+    if (path && path.toLowerCase().startsWith('amplify')) {
+      return {
+        documentationUrl: `https://docs.amplify.aws/${path.replace('amplify-', '')}`,
+        sections: Object.entries(pathMap)
+          .filter(([key]) => key.startsWith('amplify'))
+          .map(([key, value]) => ({
+            name: key,
+            url: `https://docs.amplify.aws${value.replace('/amplify', '')}`
+          })),
+        content: {
+          title: `AWS Amplify Documentation - ${path.replace('amplify-', '').replace(/-/g, ' ')}`,
+          description: "AWS Amplify is a set of tools and services that enables mobile and front-end web developers to build secure, scalable full stack applications.",
+          commonIssues: path.includes('404-errors') ? [
+            "Missing environment variables in Amplify console",
+            "Build errors preventing successful deployment",
+            "Incorrect output directory configuration",
+            "Missing or incorrect rewrites/redirects",
+            "Issues with Next.js SSR configuration",
+            "Monorepo configuration issues"
+          ] : [],
+          solutions: path.includes('404-errors') ? [
+            "Check build logs for errors",
+            "Verify environment variables are correctly set in Amplify console",
+            "Ensure build output directory matches Amplify configuration",
+            "Check Next.js configuration for proper output settings",
+            "Verify rewrites and redirects are properly configured",
+            "For monorepos, ensure proper base directory and build settings"
+          ] : []
+        }
+      };
+    }
 
     const fullPath = pathMap[path] || path || '/';
     const response = await axios.get(`${AWS_DOCS_BASE_URL}${fullPath}`);
@@ -166,16 +216,76 @@ async function fetchAWSDocs(path = '') {
   }
 }
 
+async function fetchVercelDocs(path = '') {
+  try {
+    // Map common paths to their documentation URLs
+    const pathMap = {
+      'overview': '',
+      'getting-started': '/getting-started',
+      'deployments': '/deployments',
+      'cli': '/cli',
+      'git': '/git',
+      'projects': '/projects',
+      'storage': '/storage',
+      'edge-network': '/edge-network',
+      'functions': '/functions',
+      'serverless-functions': '/functions/serverless-functions',
+      'edge-functions': '/functions/edge-functions',
+      'build-output-api': '/build-output-api',
+      'monorepos': '/monorepos',
+      'environment-variables': '/environment-variables',
+      'webhooks': '/webhooks',
+      'security': '/security',
+      'frameworks': '/frameworks',
+      'nextjs': '/frameworks/nextjs',
+      'react': '/frameworks/react',
+      'svelte': '/frameworks/svelte',
+      'nuxt': '/frameworks/nuxt',
+      'vue': '/frameworks/vue',
+      'astro': '/frameworks/astro',
+      'performance': '/limits/performance',
+      'analytics': '/analytics',
+      'troubleshooting': '/troubleshooting'
+    };
+
+    const docPath = pathMap[path.toLowerCase()] || path || '';
+    const fullUrl = `${VERCEL_DOCS_BASE_URL}${docPath}`;
+
+    return {
+      documentationUrl: fullUrl,
+      sections: Object.entries(pathMap).map(([key, value]) => ({
+        name: key,
+        url: `${VERCEL_DOCS_BASE_URL}${value}`
+      })),
+      content: {
+        title: `Vercel Documentation${path ? ` - ${path.replace(/-/g, ' ')}` : ''}`,
+        description: "Vercel is the platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration.",
+        sections: [
+          "Deployments - How to deploy projects to Vercel",
+          "Functions - Serverless and Edge Functions on Vercel",
+          "Git Integration - Connect with GitHub, GitLab, and Bitbucket",
+          "Environment Variables - Secure environment configuration",
+          "CLI - The Vercel command-line interface",
+          "Frameworks - Optimized support for popular frameworks",
+          "Storage - Persistence solutions for Vercel apps"
+        ]
+      }
+    };
+  } catch (error) {
+    throw new Error(`Failed to fetch Vercel documentation: ${error.message}`);
+  }
+}
+
 export const documentationTool = {
   name: 'get_docs',
-  description: 'Retrieves React, OpenAI, AWS, TypeScript, or Express documentation',
+  description: 'Retrieves React, OpenAI, AWS, TypeScript, Express, or Vercel documentation',
   inputSchema: {
     type: 'object',
     properties: {
       type: {
         type: 'string',
-        description: 'Type of documentation to retrieve (react, openai, aws, typescript, or express)',
-        enum: ['react', 'openai', 'aws', 'typescript', 'express']
+        description: 'Type of documentation to retrieve (react, openai, aws, typescript, express, or vercel)',
+        enum: ['react', 'openai', 'aws', 'typescript', 'express', 'vercel']
       },
       path: {
         type: 'string',
@@ -198,8 +308,10 @@ export const documentationTool = {
         return await fetchTypeScriptDocs(path || '');
       case 'express':
         return await fetchExpressDocs(path || '');
+      case 'vercel':
+        return await fetchVercelDocs(path || '');
       default:
-        throw new Error('Invalid documentation type. Must be "react", "openai", "aws", "typescript", or "express"');
+        throw new Error('Invalid documentation type. Must be "react", "openai", "aws", "typescript", "express", or "vercel"');
     }
   }
 };
