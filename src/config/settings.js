@@ -1,5 +1,14 @@
-export const settings = {
-  maxFileSize: 1024 * 1024 * 10, // 10MB
-  allowedFileTypes: ['.js', '.json', '.ts', '.tsx', '.md'],
-  excludedDirectories: ['node_modules', '.git', 'dist', 'build'],
+const config = {
+  port: 3000,
+  secret: process.env.CLINE_SECRET,
+  server: {
+    name: 'boardbreeze-mcp',
+    version: '1.0.0'
+  },
+  tools: {
+    baseDir: './tools',
+    enabled: ['list_tools', 'get_react_docs']
+  }
 };
+
+export default config;
