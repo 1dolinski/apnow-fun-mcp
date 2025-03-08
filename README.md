@@ -9,7 +9,12 @@ The Model Context Protocol (MCP) is a protocol for extending AI capabilities thr
 
 ### Documentation Tools
 - **OpenAI Documentation Tool**: Automatically generates comprehensive documentation using OpenAI's capabilities
-- **Vite Documentation Tool**: Creates structured documentation for Vite-based projects
+- **React Documentation Tool**: Access React.js documentation and best practices
+- **AWS Documentation Tool**: Retrieve AWS service documentation and implementation guides
+- **TypeScript Documentation Tool**: Access TypeScript language and API documentation
+- **Express Documentation Tool**: Retrieve Express.js framework documentation
+- **Vercel Documentation Tool**: Access Vercel deployment and configuration guides
+- **Supabase Documentation Tool**: Retrieve Supabase documentation for database, auth, storage, and more
 - **Project Setup Helper**: Streamlines project initialization and configuration
 
 ### Development Workflow
