@@ -3,6 +3,7 @@
 This is a setup tool to help developers quickly install and configure MCP (Model Context Protocol) servers. MCP is a powerful protocol that enables AI-assisted development, and this tool aims to make it easier for developers to get started with MCP servers.
 
 ## What is MCP?
+
 The Model Context Protocol (MCP) is a protocol for extending AI capabilities through local servers. This setup tool provides a quick way to bootstrap an MCP server with common tools and configurations. For more information about MCP itself, please visit the official documentation.
 
 ## Key Features
@@ -22,14 +23,16 @@ The Model Context Protocol (MCP) is a protocol for extending AI capabilities thr
 - **Development Workflow Helper**: Automates common development tasks and tracks progress
 - **Custom Tools**: Extensible architecture for adding project-specific tools
 
-Why You'll Love It
--**The MCP server acts as your personal development assistant by providing**:
-- **Instant Documentation Access**: Get documentation for React, AWS, TypeScript, Express, Vercel, and Supabase without endless Googling
--**AI-Powered Help: Leverage OpenAI**: capabilities to generate documentation and solve development challenges
--**Workflow Automation**: Simplify project setup and track your development progress
--**Local Control**: Everything runs on your machine (port 3000) for privacy and speed
+## Why You'll Love It
 
--**Perfect For New Developers**
+**The MCP server acts as your personal development assistant by providing**:
+- **Instant Documentation Access**: Get documentation for React, AWS, TypeScript, Express, Vercel, and Supabase without endless Googling
+- **AI-Powered Help**: Leverage OpenAI capabilities to generate documentation and solve development challenges
+- **Workflow Automation**: Simplify project setup and track your development progress
+- **Local Control**: Everything runs on your machine (port 3000) for privacy and speed
+
+## Perfect For New Developers
+
 If you're new to development like I was, this tool helps overcome the "documentation overload" problem. Instead of bouncing between dozens of tabs and sites, you can access what you need through a single interface that integrates with VS Code.
 
 ## Benefits for Developers
@@ -55,6 +58,7 @@ If you're new to development like I was, this tool helps overcome the "documenta
    - Development process optimization
 
 ## Getting Started
+
 1. Install dependencies
 2. Configure environment variables
 3. Start the MCP server
