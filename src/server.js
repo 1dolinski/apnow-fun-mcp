@@ -40,6 +40,27 @@ const server = new Server(
               },
               required: ["type"]
             }
+          },
+          calculate: {
+            inputSchema: {
+              type: "object",
+              properties: {
+                operation: {
+                  type: "string",
+                  description: "The mathematical operation to perform",
+                  enum: ["add", "subtract", "multiply", "divide"]
+                },
+                a: {
+                  type: "number",
+                  description: "First operand"
+                },
+                b: {
+                  type: "number",
+                  description: "Second operand"
+                }
+              },
+              required: ["operation", "a", "b"]
+            }
           }
         }
       }

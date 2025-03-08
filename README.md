@@ -1,63 +1,83 @@
-# MCP Server Setup Tool
+# MCP Server Starter Template
 
-This is a setup tool to help developers quickly install and configure MCP (Model Context Protocol) servers. MCP is a powerful protocol that enables AI-assisted development, and this tool aims to make it easier for developers to get started with MCP servers.
+A ready-to-use template for quickly setting up your own MCP (Model Context Protocol) server with documentation tools and extensible architecture.
 
-## What is MCP?
-The Model Context Protocol (MCP) is a protocol for extending AI capabilities through local servers. This setup tool provides a quick way to bootstrap an MCP server with common tools and configurations. For more information about MCP itself, please visit the official documentation.
+## What is This Template?
 
-## Key Features
+This repository provides a complete, ready-to-use MCP server template that connects AI capabilities (like Claude) with local documentation tools. It's designed to be:
+
+- **Immediately usable** - Clone, install, and run with minimal setup
+- **Easily extensible** - Add your own tools and capabilities
+- **Well documented** - Clear instructions for customization
+
+## Features Out of the Box
 
 ### Documentation Tools
-- **OpenAI Documentation Tool**: Automatically generates comprehensive documentation using OpenAI's capabilities
-- **React Documentation Tool**: Access React.js documentation and best practices
-- **AWS Documentation Tool**: Retrieve AWS service documentation and implementation guides
-- **TypeScript Documentation Tool**: Access TypeScript language and API documentation
-- **Express Documentation Tool**: Retrieve Express.js framework documentation
-- **Vercel Documentation Tool**: Access Vercel deployment and configuration guides
-- **Supabase Documentation Tool**: Retrieve Supabase documentation for database, auth, storage, and more
-- **Project Setup Helper**: Streamlines project initialization and configuration
+Access documentation directly through Claude for:
+- React
+- OpenAI API
+- AWS Services
+- TypeScript
+- Express
+- Vercel
+- Supabase
 
-### Development Workflow
-- **OpenAI Integration Helper**: Simplifies the integration of OpenAI features into your projects
-- **Development Workflow Helper**: Automates common development tasks and tracks progress
-- **Custom Tools**: Extensible architecture for adding project-specific tools
+### Ready-to-Use Architecture
+- Complete MCP server implementation
+- Properly structured tool organization
+- Configuration system
 
-Why You'll Love It
--**The MCP server acts as your personal development assistant by providing**:
-- **Instant Documentation Access**: Get documentation for React, AWS, TypeScript, Express, Vercel, and Supabase without endless Googling
--**AI-Powered Help: Leverage OpenAI**: capabilities to generate documentation and solve development challenges
--**Workflow Automation**: Simplify project setup and track your development progress
--**Local Control**: Everything runs on your machine (port 3000) for privacy and speed
+## Quick Start
 
--**Perfect For New Developers**
-If you're new to development like I was, this tool helps overcome the "documentation overload" problem. Instead of bouncing between dozens of tabs and sites, you can access what you need through a single interface that integrates with VS Code.
+See the [Implementation Guide](./implementation-guide-mcp.md) for step-by-step instructions to get up and running in minutes.
 
-## Benefits for Developers
+Basic steps:
+```bash
+# 1. Clone the repository
+git clone https://github.com/mgesteban/mcp-server-starter
 
-1. **Increased Productivity**
-   - Automated documentation generation
-   - Streamlined project setup
-   - Reduced boilerplate code
+# 2. Install dependencies
+cd mcp-server-starter
+npm install
 
-2. **Better Code Quality**
-   - Consistent documentation standards
-   - Automated validation
-   - Best practices enforcement
+# 3. Start the server
+npm start
+```
 
-3. **Simplified Integration**
-   - Easy OpenAI API integration
-   - Standardized tool interfaces
-   - Modular architecture
+## Documentation
 
-4. **Enhanced Workflow**
-   - Automated task management
-   - Progress tracking
-   - Development process optimization
+This template includes comprehensive documentation to help you get started and make the most of your MCP server:
 
-## Getting Started
-1. Install dependencies
-2. Configure environment variables
-3. Start the MCP server
-4. Connect to your development environment
+- [Implementation Guide](./implementation-guide-mcp.md) - Simple step-by-step setup instructions
+- [VS Code Setup Guide](./VSCODE_SETUP.md) - How to configure VS Code to work with your MCP server
+- [Custom Tools Guide](./CUSTOM_TOOLS_GUIDE.md) - Detailed instructions for creating your own MCP tools
 
-The MCP server acts as a bridge between your development environment and powerful AI capabilities, making it easier to create, document, and maintain high-quality software projects.
+Check the `.env.example` file for environment variable configuration options.
+
+## How It Works
+
+This template provides an MCP server that runs locally on your machine. When connected to VS Code with the Claude extension, it enables Claude to:
+
+1. Access documentation for various technologies
+2. Use the documentation to help with your development tasks
+3. Provide code examples and explanations based on official documentation
+
+## Customizing Your Server
+
+This template includes a calculator tool example (`src/tools/calculatorTool.js`) that demonstrates how to create a basic MCP tool with input validation and error handling.
+
+To add your own tools to the server:
+
+1. Create new tool files in the `src/tools` directory
+2. Register your tools in `src/tools/index.js`
+3. Update configuration in `src/config/settings.js`
+
+See the [Custom Tools Guide](./CUSTOM_TOOLS_GUIDE.md) for detailed instructions and best practices.
+
+## Contributing
+
+If you improve this template or add useful tools, please consider submitting a pull request to benefit the community.
+
+## License
+
+MIT License - See LICENSE file for details.

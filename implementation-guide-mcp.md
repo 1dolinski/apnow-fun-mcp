@@ -1,126 +1,75 @@
-# BoardBreeze MCP Server Implementation Guide
+# Simple MCP Server Setup Guide
 
-## Step 1: Basic MCP Setup
-1. Create new directory (cline-mcp)
-2. Initialize npm project:
-   ```bash
-   npm init -y
+This guide will help you quickly set up an MCP (Model Context Protocol) server that provides documentation tools for various technologies.
+
+## Quick Start
+
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/mgesteban/mcp-server-starter
+cd mcp-server-starter
+```
+
+### Step 2: Install Dependencies
+```bash
+npm install
+```
+
+### Step 3: Configure Environment Variables
+Create a `.env` file in the root directory:
+```
+# Optional: OpenAI API Key for enhanced documentation features
+OPENAI_API_KEY=your_openai_api_key
+```
+
+### Step 4: Start the MCP Server
+```bash
+npm start
+```
+
+### Step 5: Connect to VS Code
+1. Open VS Code
+2. Install the Claude extension if you haven't already
+3. Configure the MCP server in VS Code:
+   - Open VS Code settings
+   - Navigate to Claude extension settings
+   - Add the MCP server configuration:
+   ```json
+   {
+     "mcpServers": {
+       "boardbreeze": {
+         "command": "node",
+         "args": ["path/to/mcp-server-starter/src/server.js"],
+         "disabled": false,
+         "autoApprove": []
+       }
+     }
+   }
    ```
-3. Install dependencies:
-   ```bash
-   npm install express ws dotenv cors nodemon
-   ```
-4. Create folder structure:
-   ```
-   cline-mcp/
-   ├── package.json
-   ├── .env
-   ├── src/
-   │   ├── server.js
-   │   ├── tools/
-   │   │   ├── index.js
-   │   │   └── projectTools.js
-   │   └── config/
-   │       └── settings.js
-   ```
-5. Update package.json:
-   - Add `"type": "module"`
-   - Add scripts for development and production
+4. Start using the MCP server with Claude in VS Code
 
-6. Create .env file with required configuration:
-   ```
-   PORT=your_port
-   SECRET=your_secret
-   ```
+## Available Documentation Tools
 
-7. Implement server.js:
-   - Set up WebSocket server
-   - Configure Express middleware
-   - Initialize MCP tools
+The server provides documentation tools for:
+- React
+- OpenAI
+- AWS
+- TypeScript
+- Express
+- Vercel
+- Supabase
 
-8. Implement tools/projectTools.js:
-   - Create basic tool functions
-   - Set up error handling
-   - Add input validation
+## Customizing Your MCP Server
 
-9. Implement tools/index.js:
-   - Register all tools
-   - Set up tool mapping
-   - Configure tool permissions
+To add or modify tools:
+1. Edit `src/tools/documentation.js` to add new documentation sources
+2. Edit `src/tools/index.js` to register new tools
+3. Update `src/config/settings.js` to configure server settings
 
-10. Implement config/settings.js:
-    - Define server configuration
-    - Set up environment variables
-    - Configure tool settings
+## Troubleshooting
 
-11. Test server startup:
-    ```bash
-    npm run dev
-    ```
-
-## Step 2: Custom MCP Setup
-1. Create docsTools.js with the following tools:
-   - OpenAI Documentation Tool
-     - API integration
-     - Documentation generation
-     - Response formatting
-
-   - Vite Documentation Tool
-     - Project structure documentation
-     - Configuration guides
-     - Best practices
-
-   - Project Setup Helper
-     - Template generation
-     - Dependency management
-     - Configuration assistance
-
-   - OpenAI Integration Helper
-     - API key management
-     - Request formatting
-     - Response handling
-
-   - Development Workflow Helper
-     - Process automation
-     - Task management
-     - Progress tracking
-
-2. Create utils.js:
-   - Helper functions
-   - Common utilities
-   - Shared constants
-
-3. Update tools/index.js:
-   - Register new tools
-   - Configure tool dependencies
-   - Set up error handling
-
-4. Install additional dependencies:
-   ```bash
-   npm install node-fetch
-   ```
-
-5. Test new tools functionality:
-   - Verify each tool's operation
-   - Test error handling
-   - Validate input/output
-   - Check performance
-   - Document results
-
-## Final Steps
-1. Add MCP server to Cline settings configuration:
-   - Update configuration file
-   - Set environment variables
-   - Configure server options
-
-2. Test complete workflow:
-   - Verify all tools work together
-   - Check error handling
-   - Validate performance
-   - Document any issues
-
-3. Document additional setup requirements:
-   - Environment setup
-   - Dependencies
-   - Configuration options
-   - Usage examples
+If you encounter issues:
+- Ensure all dependencies are installed
+- Check that environment variables are properly set
+- Verify the server is running (you should see "MCP Server running on port 3000")
+- Make sure VS Code is properly configured to connect to your MCP server

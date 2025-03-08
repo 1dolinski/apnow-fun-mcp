@@ -5,6 +5,7 @@ import {
   ErrorCode
 } from '@modelcontextprotocol/sdk/types.js';
 import { documentationTool } from './documentation.js';
+import { calculatorTool } from './calculatorTool.js';
 
 const tools = new Map();
 
@@ -27,6 +28,9 @@ tools.set('list_tools', {
 
 // Register documentation tool
 tools.set(documentationTool.name, documentationTool);
+
+// Register calculator tool (example)
+tools.set(calculatorTool.name, calculatorTool);
 
 export function setupTools(server) {
   // Handle tool listing
