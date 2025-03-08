@@ -6,6 +6,7 @@ const AWS_DOCS_BASE_URL = 'https://docs.aws.amazon.com';
 const TS_DOCS_BASE_URL = 'https://www.typescriptlang.org/docs';
 const EXPRESS_DOCS_BASE_URL = 'https://expressjs.com';
 const VERCEL_DOCS_BASE_URL = 'https://vercel.com/docs';
+const SUPABASE_DOCS_BASE_URL = 'https://supabase.com/docs';
 
 async function fetchReactDocs(path = '') {
   try {
@@ -216,6 +217,72 @@ async function fetchAWSDocs(path = '') {
   }
 }
 
+async function fetchSupabaseDocs(path = '') {
+  try {
+    // Map common paths to their documentation URLs
+    const pathMap = {
+      'overview': '',
+      'getting-started': '/guides/getting-started',
+      'quickstart': '/guides/getting-started/quickstarts',
+      'database': '/guides/database',
+      'auth': '/guides/auth',
+      'storage': '/guides/storage',
+      'functions': '/guides/functions',
+      'realtime': '/guides/realtime',
+      'api': '/guides/api',
+      'cli': '/guides/cli',
+      'self-hosting': '/guides/self-hosting',
+      'ai': '/guides/ai',
+      'vector-search': '/guides/ai/vector-search',
+      'oauth': '/guides/auth/oauth',
+      'email-login': '/guides/auth/email-login',
+      'phone-login': '/guides/auth/phone-login',
+      'row-level-security': '/guides/database/postgres/row-level-security',
+      'migrations': '/guides/database/migrations',
+      'edge-functions': '/guides/functions/edge-functions',
+      'typescript': '/guides/api/typescript-support',
+      'authentication': '/guides/auth/authentication',
+      'webhook': '/guides/auth/auth-hooks',
+      'buckets': '/guides/storage/buckets',
+      'policies': '/guides/auth/row-level-security',
+      'javascript-sdk': '/reference/javascript',
+      'dart-sdk': '/reference/dart',
+      'flutter-sdk': '/reference/flutter',
+      'kotlin-sdk': '/reference/kotlin',
+      'swift-sdk': '/reference/swift',
+      'python-sdk': '/reference/python',
+      'rest-api': '/reference/api',
+      'management-api': '/reference/management-api'
+    };
+
+    const docPath = pathMap[path.toLowerCase()] || path || '';
+    const fullUrl = `${SUPABASE_DOCS_BASE_URL}${docPath}`;
+
+    return {
+      documentationUrl: fullUrl,
+      sections: Object.entries(pathMap).map(([key, value]) => ({
+        name: key,
+        url: `${SUPABASE_DOCS_BASE_URL}${value}`
+      })),
+      content: {
+        title: `Supabase Documentation${path ? ` - ${path.replace(/-/g, ' ')}` : ''}`,
+        description: "Supabase is an open source Firebase alternative providing all the backend features you need to build a product: a Postgres database, Authentication, instant APIs, Edge Functions, Realtime subscriptions, and Storage.",
+        sections: [
+          "Database - Postgres database with powerful extensions",
+          "Authentication - Flexible user management with JWT tokens",
+          "Storage - Store and serve large files",
+          "Edge Functions - Deploy serverless functions globally",
+          "Realtime - Build realtime applications",
+          "AI & Vector - Build AI applications with vector search",
+          "API - Auto-generated and customizable APIs"
+        ]
+      }
+    };
+  } catch (error) {
+    throw new Error(`Failed to fetch Supabase documentation: ${error.message}`);
+  }
+}
+
 async function fetchVercelDocs(path = '') {
   try {
     // Map common paths to their documentation URLs
@@ -278,14 +345,14 @@ async function fetchVercelDocs(path = '') {
 
 export const documentationTool = {
   name: 'get_docs',
-  description: 'Retrieves React, OpenAI, AWS, TypeScript, Express, or Vercel documentation',
+  description: 'Retrieves React, OpenAI, AWS, TypeScript, Express, Vercel, or Supabase documentation',
   inputSchema: {
     type: 'object',
     properties: {
       type: {
         type: 'string',
-        description: 'Type of documentation to retrieve (react, openai, aws, typescript, express, or vercel)',
-        enum: ['react', 'openai', 'aws', 'typescript', 'express', 'vercel']
+        description: 'Type of documentation to retrieve (react, openai, aws, typescript, express, vercel, or supabase)',
+        enum: ['react', 'openai', 'aws', 'typescript', 'express', 'vercel', 'supabase']
       },
       path: {
         type: 'string',
@@ -310,8 +377,10 @@ export const documentationTool = {
         return await fetchExpressDocs(path || '');
       case 'vercel':
         return await fetchVercelDocs(path || '');
+      case 'supabase':
+        return await fetchSupabaseDocs(path || '');
       default:
-        throw new Error('Invalid documentation type. Must be "react", "openai", "aws", "typescript", "express", or "vercel"');
+        throw new Error('Invalid documentation type. Must be "react", "openai", "aws", "typescript", "express", "vercel", or "supabase"');
     }
   }
 };

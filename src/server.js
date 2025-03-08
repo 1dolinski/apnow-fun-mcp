@@ -30,8 +30,8 @@ const server = new Server(
               properties: {
                 type: {
                   type: "string",
-                  description: "Type of documentation to retrieve (react, openai, aws, typescript, express, or vercel)",
-                  enum: ["react", "openai", "aws", "typescript", "express", "vercel"]
+                  description: "Type of documentation to retrieve (react, openai, aws, typescript, express, vercel, or supabase)",
+                  enum: ["react", "openai", "aws", "typescript", "express", "vercel", "supabase"]
                 },
                 path: {
                   type: "string",
