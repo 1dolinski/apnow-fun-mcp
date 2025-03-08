@@ -2,6 +2,10 @@
 
 A ready-to-use template for quickly setting up your own MCP (Model Context Protocol) server with documentation tools and extensible architecture.
 
+## What is MCP?
+
+The Model Context Protocol (MCP) is a protocol for extending AI capabilities through local servers. This setup tool provides a quick way to bootstrap an MCP server with common tools and configurations. For more information about MCP itself, please visit the official documentation.
+
 ## What is This Template?
 
 This repository provides a complete, ready-to-use MCP server template that connects AI capabilities (like Claude) with local documentation tools. It's designed to be:
@@ -26,6 +30,18 @@ Access documentation directly through Claude for:
 - Complete MCP server implementation
 - Properly structured tool organization
 - Configuration system
+
+## Why You'll Love It
+
+**The MCP server acts as your personal development assistant by providing**:
+- **Instant Documentation Access**: Get documentation for React, AWS, TypeScript, Express, Vercel, and Supabase without endless Googling
+- **AI-Powered Help**: Leverage AI capabilities to generate documentation and solve development challenges
+- **Workflow Automation**: Simplify project setup and track your development progress
+- **Local Control**: Everything runs on your machine (port 3000) for privacy and speed
+
+## Perfect For New Developers
+
+If you're new to development, this tool helps overcome the "documentation overload" problem. Instead of bouncing between dozens of tabs and sites, you can access what you need through a single interface that integrates with VS Code.
 
 ## Quick Start
 
