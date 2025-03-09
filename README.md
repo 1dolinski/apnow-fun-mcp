@@ -65,7 +65,6 @@ npm start
 This template includes comprehensive documentation to help you get started and make the most of your MCP server:
 
 - [Implementation Guide](./implementation-guide-mcp.md) - Simple step-by-step setup instructions
-- [VS Code Setup Guide](./VSCODE_SETUP.md) - How to configure VS Code to work with your MCP server
 - [Custom Tools Guide](./CUSTOM_TOOLS_GUIDE.md) - Detailed instructions for creating your own MCP tools
 
 Check the `.env.example` file for environment variable configuration options.
