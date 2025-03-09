@@ -18,8 +18,14 @@ npm install
 ### Step 3: Configure Environment Variables
 Create a `.env` file in the root directory:
 ```
-# Optional: OpenAI API Key for enhanced documentation features
-OPENAI_API_KEY=your_openai_api_key
+REACT_API_KEY=your_react_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+AWS_ACCESS_KEY=your_aws_access_key_here
+AWS_SECRET_KEY=your_aws_secret_key_here
+TYPESCRIPT_API_KEY=your_typescript_api_key_here
+EXPRESS_API_KEY=your_express_api_key_here
+VERCEL_API_KEY=your_vercel_api_key_here
+SUPABASE_API_KEY=your_supabase_api_key_here
 ```
 
 ### Step 4: Start the MCP Server
@@ -29,24 +35,37 @@ npm start
 
 ### Step 5: Connect to VS Code
 1. Open VS Code
-2. Install the Claude extension if you haven't already
+2. Install the Cline extension if you haven't already
 3. Configure the MCP server in VS Code:
    - Open VS Code settings
-   - Navigate to Claude extension settings
+   - Navigate to Cline extension settings
    - Add the MCP server configuration:
    ```json
    {
-     "mcpServers": {
-       "boardbreeze": {
-         "command": "node",
-         "args": ["path/to/mcp-server-starter/src/server.js"],
-         "disabled": false,
-         "autoApprove": []
+     "cline.mcpSettings": {
+       "mcpServers": {
+         "boardbreeze": {
+           "command": "node",
+           "args": ["path/to/mcp-server-starter/src/server.js"],
+           "env": {
+             "CLINE_SECRET": "your_secret_here",
+             "REACT_API_KEY": "your_react_api_key_here",
+             "OPENAI_API_KEY": "your_openai_api_key_here",
+             "AWS_ACCESS_KEY": "your_aws_access_key_here",
+             "AWS_SECRET_KEY": "your_aws_secret_key_here",
+             "TYPESCRIPT_API_KEY": "your_typescript_api_key_here",
+             "EXPRESS_API_KEY": "your_express_api_key_here",
+             "VERCEL_API_KEY": "your_vercel_api_key_here",
+             "SUPABASE_API_KEY": "your_supabase_api_key_here"
+           },
+           "disabled": false,
+           "autoApprove": []
+         }
        }
      }
    }
    ```
-4. Start using the MCP server with Claude in VS Code
+4. Start using the MCP server with Cline in VS Code
 
 ## Available Documentation Tools
 
