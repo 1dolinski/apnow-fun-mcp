@@ -1,33 +1,33 @@
 # VS Code Configuration Guide for MCP Server
 
-This guide will help you configure VS Code to work with your MCP server and Claude, providing detailed instructions for setup and troubleshooting.
+This guide will help you configure VS Code to work with your MCP server and Cline, providing detailed instructions for setup and troubleshooting.
 
 ## Prerequisites
 
 - VS Code installed on your machine
-- Claude extension for VS Code installed
+- Cline extension for VS Code installed
 - MCP server running locally (following the steps in [Implementation Guide](./implementation-guide-mcp.md))
 
 ## Configuring VS Code for MCP
 
-### Step 1: Install the Claude Extension
+### Step 1: Install the Cline Extension
 
 1. Open VS Code
 2. Click on the Extensions icon in the left sidebar (or press `Ctrl+Shift+X`)
-3. Search for "Claude"
-4. Find the official Claude extension by Anthropic and click "Install"
+3. Search for "Cline"
+4. Find the official Cline extension and click "Install"
 
-### Step 2: Configure Claude Settings
+### Step 2: Configure Cline Settings
 
-#### For VS Code Claude Extension:
+#### For VS Code Cline Extension:
 
 1. Open VS Code Settings:
    - Windows/Linux: File > Preferences > Settings
    - macOS: Code > Preferences > Settings
    
-2. Search for "Claude" in the settings search bar
+2. Search for "Cline" in the settings search bar
 
-3. Find "Claude: MCP Settings" (or navigate to the Claude extension settings)
+3. Find "Cline: MCP Settings" (or navigate to the Cline extension settings)
 
 4. Click on "Edit in settings.json"
 
@@ -35,13 +35,13 @@ This guide will help you configure VS Code to work with your MCP server and Clau
 
 ```json
 {
-  "claude.mcpSettings": {
+  "cline.mcpSettings": {
     "mcpServers": {
       "mcp-server-starter": {
         "command": "node",
         "args": ["path/to/mcp-server-starter/src/server.js"],
         "env": {
-          "OPENAI_API_KEY": "your_openai_api_key_here"
+          "CLINE_SECRET": "your_secret_here"
         },
         "disabled": false,
         "autoApprove": []
@@ -53,10 +53,31 @@ This guide will help you configure VS Code to work with your MCP server and Clau
 
 **Important:** Replace `"path/to/mcp-server-starter"` with the actual path to your MCP server directory.
 
-### Step 3: Test the Configuration
+### Step 3: MCP Server Configuration
+
+Make sure your MCP server's configuration in `src/config/settings.js` is properly set up:
+
+```javascript
+const config = {
+  port: 3000,
+  secret: process.env.CLINE_SECRET,
+  server: {
+    name: 'boardbreeze-mcp',
+    version: '1.0.0'
+  },
+  tools: {
+    baseDir: './tools',
+    enabled: ['list_tools', 'get_react_docs']
+  }
+};
+
+export default config;
+```
+
+### Step 4: Test the Configuration
 
 1. Restart VS Code to apply the changes
-2. Open the Claude extension panel
+2. Open the Cline extension panel
 3. Type a query that would use the MCP tools, like "What are the key concepts in React?"
 
 ## Troubleshooting
@@ -66,8 +87,8 @@ This guide will help you configure VS Code to work with your MCP server and Clau
 #### MCP Server Not Connecting
 
 **Symptoms:**
-- Claude says it can't find the MCP server
-- MCP tools don't appear in Claude's capabilities
+- Cline says it can't find the MCP server
+- MCP tools don't appear in Cline's capabilities
 
 **Solutions:**
 1. Verify the server is running
@@ -85,14 +106,14 @@ This guide will help you configure VS Code to work with your MCP server and Clau
 1. Make sure the server.js file is executable (`chmod +x src/server.js` on macOS/Linux)
 2. Check that you have the necessary permissions to run Node.js
 
-#### API Key Issues
+#### Secret Key Issues
 
 **Symptoms:**
 - Documentation tools return authorization errors
-- Server logs show API key errors
+- Server logs show secret key errors
 
 **Solutions:**
-1. Verify your API key is correctly set in the .env file
+1. Verify your secret key is correctly set in the .env file
 2. Check the environment variables in VS Code settings
 3. Restart the MCP server
 
@@ -113,7 +134,7 @@ You can configure multiple MCP servers to run simultaneously:
 
 ```json
 {
-  "claude.mcpSettings": {
+  "cline.mcpSettings": {
     "mcpServers": {
       "mcp-server-starter": {
         "command": "node",
@@ -141,7 +162,7 @@ You can configure certain tools to run without requiring explicit approval:
 
 ```json
 {
-  "claude.mcpSettings": {
+  "cline.mcpSettings": {
     "mcpServers": {
       "mcp-server-starter": {
         "command": "node",
@@ -154,15 +175,15 @@ You can configure certain tools to run without requiring explicit approval:
 }
 ```
 
-## Differences Between VS Code and Claude Desktop App
+## Differences Between VS Code and Cline Desktop App
 
-If you're using the Claude desktop app instead of VS Code:
+If you're using the Cline desktop app instead of VS Code:
 
 1. The MCP settings file is located at:
-   - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-   - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-   - **Linux**: `~/.config/Claude/claude_desktop_config.json`
+   - **macOS**: `~/Library/Application Support/Cline/cline_desktop_config.json`
+   - **Windows**: `%APPDATA%\Cline\cline_desktop_config.json`
+   - **Linux**: `~/.config/Cline/cline_desktop_config.json`
 
 2. The structure of the settings file is the same, with a top-level `mcpServers` object.
 
-3. You'll need to restart the Claude desktop app after making changes to the configuration.
+3. You'll need to restart the Cline desktop app after making changes to the configuration.
