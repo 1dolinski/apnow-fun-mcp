@@ -7,7 +7,7 @@ const config = {
   },
   tools: {
     baseDir: './tools',
-    enabled: ['list_tools', 'get_docs', 'calculate']
+    enabled: ['list_tools', 'get_docs', 'calculate', 'get_weather']
   }
 };
 

@@ -6,6 +6,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { documentationTool } from './documentation.js';
 import { calculatorTool } from './calculatorTool.js';
+import { weatherTool } from './weatherTool.js';
 
 const tools = new Map();
 
@@ -31,6 +32,9 @@ tools.set(documentationTool.name, documentationTool);
 
 // Register calculator tool (example)
 tools.set(calculatorTool.name, calculatorTool);
+
+// Register weather tool
+tools.set(weatherTool.name, weatherTool);
 
 export function setupTools(server) {
   // Handle tool listing
