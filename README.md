@@ -42,7 +42,7 @@ This server allows you to dynamically search and execute [APINow.fun](https://ap
 *   **ApiNow Execute:** Execute specific ApiNow endpoints, passing necessary data and handling authentication.
 *   **Extensible:** Easy addition of custom tools.
 
-## Quick Start
+## Start
 
 1.  **Clone the repository:**
     ```bash
