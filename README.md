@@ -12,8 +12,8 @@ This repository provides a Model Context Protocol (MCP) server specifically desi
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url> # Replace with your repo URL
-    cd <your-repository-directory>
+    git clone https://github.com/1dolinski/apnow-fun-mcp.git # Replace with your repo URL
+    cd apnow-fun-mcp
     ```
 
 2.  **Install dependencies:**
@@ -59,6 +59,28 @@ This server provides the following tools accessible via MCP:
 
 *   `apinow_search`: Searches APINow.fun endpoints.
 *   `apinow_execute`: Executes APINow.fun endpoints.
+
+## Community & Support
+
+[![Join us on Telegram](https://img.shields.io/badge/Join%20us%20on-Telegram-blue.svg)](https://t.me/+owjactcDFTo3Yzg5)
+[![Follow us on X](https://img.shields.io/badge/Follow%20us%20on-X-black.svg)](https://x.com/apinowfun)
+[![Visit our Website](https://img.shields.io/badge/Visit%20our-Website-green.svg)](https://apinow.fun)
+
+Join our [Telegram group](https://t.me/+owjactcDFTo3Yzg5) for discussions, help, and updates!
+
+For issues, please open a GitHub issue. For other inquiries, you can reach out on Telegram or X.
+
+We are built on **Base**! [![Base logo](https://raw.githubusercontent.com/base-org/brand-kit/main/logo/symbol/Base_Symbol_Blue.svg)](https://base.org) 
+
+## Contributors
+
+*   [1dolinski](https://x.com/1dolinski)
+
+Want to contribute? Please open an issue or pull request!
+
+## Sponsors
+
+Become a sponsor and get your logo shown here! (Contact details/link)
 
 ## License
 
