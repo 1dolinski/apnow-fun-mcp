@@ -1,3 +1,5 @@
+![APINow.fun MCP Server Banner](https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-d388-61f7-be14-1a61b521cfe6/raw?se=2025-04-17T17%3A09%3A19Z&sp=r&sv=2024-08-04&sr=b&scid=68bdafea-6355-5924-adf0-d5c3d42c5eeb&skoid=dfdaf859-26f6-4fed-affc-1befb5ac1ac2&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-16T21%3A24%3A58Z&ske=2025-04-17T21%3A24%3A58Z&sks=b&skv=2024-08-04&sig=bkEWRBCoi%2BSPL2ar2lW7e7Prlzl1lD8aZmfIeua%2BVOo%3D)
+
 # APINow.fun MCP Server
 
 This repository provides a Model Context Protocol (MCP) server specifically designed to interact with the APINow.fun platform. It allows AI MCP Clients (like Claude Desktop, Cursor, VS Code) to search and execute APINow.fun endpoints.
