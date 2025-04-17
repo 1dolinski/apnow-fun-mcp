@@ -2,6 +2,40 @@
 
 # APINow.fun MCP Server
 
+## TL;DR
+
+This server allows you to dynamically search and execute [APINow.fun](https://apinow.fun) endpoints with a wallet of your choice using Claude Desktop, Cursor, VS Code, or any popular MCP Client.
+
+1.  **Clone & Install:**
+    ```bash
+    git clone https://github.com/1dolinski/apnow-fun-mcp.git # Or your fork
+    cd apnow-fun-mcp
+    npm install
+    ```
+
+2.  **Configure MCP Client:** Add this to your client's MCP settings (e.g., `~/.cursor/mcp.json`):
+
+    ```json
+    {
+      "mcpServers": {
+        "apinow-fun-mcp": {
+          "command": "node",
+          // Make sure this path points to YOUR cloned repository location
+          "args": ["/path/to/your/clone/src/server.js"],
+          "env": {
+            // Replace with your actual ApiNow Wallet Private Key
+            "APINOW_WALLET_PKEY": "YOUR_APINOW_WALLET_PRIVATE_KEY"
+          },
+          "disabled": false,
+          "autoApprove": []
+        }
+      }
+    }
+    ```
+    *Remember to update the `args` path and set your `APINOW_WALLET_PKEY`!*
+
+---
+
 This repository provides a Model Context Protocol (MCP) server specifically designed to interact with the APINow.fun platform. It allows AI MCP Clients (like Claude Desktop, Cursor, VS Code) to search and execute APINow.fun endpoints.
 
 ## Features
