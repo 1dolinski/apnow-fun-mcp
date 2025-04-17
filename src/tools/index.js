@@ -4,37 +4,14 @@ import {
   McpError,
   ErrorCode
 } from '@modelcontextprotocol/sdk/types.js';
-import { documentationTool } from './documentation.js';
-import { calculatorTool } from './calculatorTool.js';
-import { weatherTool } from './weatherTool.js';
+import { apinowSearchTool, apinowExecuteTool } from './apinowTool.js';
 
 const tools = new Map();
 
-// Register tools
-tools.set('list_tools', {
-  description: 'Lists all available tools',
-  inputSchema: {
-    type: 'object',
-    properties: {},
-    required: []
-  },
-  handler: async () => {
-    return Array.from(tools.entries()).map(([name, tool]) => ({
-      name,
-      description: tool.description,
-      inputSchema: tool.inputSchema
-    }));
-  }
-});
 
-// Register documentation tool
-tools.set(documentationTool.name, documentationTool);
-
-// Register calculator tool (example)
-tools.set(calculatorTool.name, calculatorTool);
-
-// Register weather tool
-tools.set(weatherTool.name, weatherTool);
+// Register ApiNow tools
+tools.set(apinowSearchTool.name, apinowSearchTool);
+tools.set(apinowExecuteTool.name, apinowExecuteTool);
 
 export function setupTools(server) {
   // Handle tool listing

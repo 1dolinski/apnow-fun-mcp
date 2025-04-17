@@ -1,9 +1,17 @@
 {
-  "name": "@mgesteban/mcp-server-setup",
-  "version": "1.0.0",
-  "description": "A helpful setup tool for quickly installing and configuring MCP servers",
+  "name": "apinow-fun-mcpserver",
+  "version": "1.0.2",
+  "description": "MCP Server starter kit with ApiNow tools",
   "type": "module",
   "main": "src/server.js",
+  "bin": {
+    "mcp-server-apinow": "./src/server.js"
+  },
+  "files": [
+    "src/",
+    ".env.example",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mgesteban/mcp-setup-multi-context-protocol.git"
@@ -21,21 +29,21 @@
     "url": "https://github.com/mgesteban/mcp-setup-multi-context-protocol/issues"
   },
   "homepage": "https://github.com/mgesteban/mcp-setup-multi-context-protocol#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.22.0",
     "@modelcontextprotocol/sdk": "^1.5.0",
+    "apinow-sdk": "^0.11.4",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2",
-    "ws": "^8.16.0"
+    "ws": "^8.16.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

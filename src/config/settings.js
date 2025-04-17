@@ -1,13 +1,13 @@
 const config = {
   port: 3000,
-  secret: process.env.CLINE_SECRET,
+  secret: "",
   server: {
-    name: 'boardbreeze-mcp',
+    name: 'apinow-fun-mcpserver',
     version: '1.0.0'
   },
   tools: {
     baseDir: './tools',
-    enabled: ['list_tools', 'get_docs', 'calculate', 'get_weather']
+    enabled: ['apinow_search', 'apinow_execute']
   }
 };
 
