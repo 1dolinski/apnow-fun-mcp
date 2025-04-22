@@ -40,6 +40,7 @@ export const apinowSearchTool = {
         }
         try {
             console.error(`Executing apinow_search with query: ${args.query}`);
+            // TODO: Add cost estimation if possible before execution
             const response = await apiNow.infoBuyResponse(
                 APINOW_SEARCH_ENDPOINT,
                 APINOW_WALLET_PKEY,
@@ -53,11 +54,25 @@ export const apinowSearchTool = {
                     },
                 }
             );
-            console.error('apinow_search successful.');
-            return response;
+
+            // Assuming response structure { data: ..., txHash: ..., txHashUrl: ... }
+            const { data, txHash, txHashUrl } = response;
+            // const txHashUrl = txHash ? `https://basescan.org/tx/${txHash}` : null; // Removed construction
+
+            console.error(`apinow_search successful. Tx: ${txHashUrl || txHash || 'N/A'}`); // Log URL or Hash
+
+            return {
+                success: true,
+                data: data, // The actual API response data
+                txHash: txHash,
+                txHashUrl: txHashUrl // Use directly from response
+            };
+
         } catch (error) {
             console.error('Error executing apinow_search:', error);
-            throw new Error(`ApiNow search failed: ${error.message || error}`);
+            // Ensure error propagates correctly, potentially with more context
+            const errorMessage = error.message || (typeof error === 'string' ? error : JSON.stringify(error));
+            throw new Error(`ApiNow search failed: ${errorMessage}`);
         }
     },
 };
@@ -121,6 +136,7 @@ export const apinowExecuteTool = {
 
         try {
             console.error(`Executing apinow_execute for ${endpointUrl}`);
+             // TODO: Add cost estimation if possible before execution
             const response = await apiNow.infoBuyResponse(
                 endpointUrl,
                 APINOW_WALLET_PKEY,
@@ -131,11 +147,24 @@ export const apinowExecuteTool = {
                     fastMode: args.fastMode
                 }
             );
-            console.error('apinow_execute successful.');
-            return response;
+
+            // Assuming response structure { data: ..., txHash: ..., txHashUrl: ... }
+            const { data, txHash, txHashUrl } = response;
+            // const txHashUrl = txHash ? `https://basescan.org/tx/${txHash}` : null; // Removed construction
+
+            console.error(`apinow_execute successful for ${endpointUrl}. Tx: ${txHashUrl || txHash || 'N/A'}`); // Log URL or Hash
+
+            return {
+                success: true,
+                data: data, // The actual API response data
+                txHash: txHash,
+                txHashUrl: txHashUrl // Use directly from response
+            };
         } catch (error) {
             console.error(`Error executing apinow_execute for ${endpointUrl}:`, error);
-            throw new Error(`ApiNow execution failed for ${endpointUrl}: ${error.message || error}`);
+            // Ensure error propagates correctly, potentially with more context
+            const errorMessage = error.message || (typeof error === 'string' ? error : JSON.stringify(error));
+            throw new Error(`ApiNow execution failed for ${endpointUrl}: ${errorMessage}`);
         }
     },
 }; 
